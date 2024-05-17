@@ -168,7 +168,7 @@ include_once "../users/includes/header.php";
                         <h5>Total</h5>
                         <h5>$160</h5>
                     </div>
-                    <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                    <a href="checkout.php" class="btn btn-block btn-primary font-weight-bold my-3 py-3 ">Proceed To Checkout</a>
                 </div>
             </div>
         </div>
