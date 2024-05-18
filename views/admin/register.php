@@ -42,26 +42,26 @@ session_start();
                             </div>
 
                             <form class="user" method="post" action="../../models/Register_model.php"
-                                enctype="muultipart/form-data">
+                                enctype="multipart/form-data">
 
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Enter Name" name="name">
+                                            placeholder="Enter Name" name="name" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address" name="email">
+                                        placeholder="Email Address" name="email" required>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password" name="password">
+                                            id="exampleInputPassword" placeholder="Password" name="password" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password" name="repassword">
+                                            id="exampleRepeatPassword" placeholder="Repeat Password" name="repassword" required>
                                     </div>
                                 </div>
                                 <div class="form-group">

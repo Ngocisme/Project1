@@ -6,6 +6,12 @@ $username = "mamp";
 $password = "";
 $database = "KeiTaiZonePHP";
 
+function check($check){
+  echo "<pre>";
+  print_r($check);
+  echo "</pre>";
+}
+
 /// Check Database connect
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
