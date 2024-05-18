@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,34 +40,43 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user">
+
+                            <form class="user" method="post" action="../../models/Register_model.php"
+                                enctype="muultipart/form-data">
+
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
-                                    </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
+                                            placeholder="Enter Name" name="name">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
+                                        placeholder="Email Address" name="email">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                            id="exampleInputPassword" placeholder="Password" name="password">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                            id="exampleRepeatPassword" placeholder="Repeat Password" name="repassword">
                                     </div>
                                 </div>
-                                <a href="login.php" class="btn btn-primary btn-user btn-block">
+                                <div class="form-group">
+                                        <input type="file" class="form-control form-control-user"
+                                            placeholder="Put your avatar here" name="avatar" accept="image/*" required>
+                                    </div>
+
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Register Account
-                                </a>
+                                </button>
+                                <p class='danger text-danger'><?php
+                                if (isset($_GET['err'])) {
+                                    echo $_GET['err'];
+                                }
+                                ?></p>
                                 <hr>
                                 <a href="index.php" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
@@ -72,6 +85,7 @@
                                     <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
                                 </a>
                             </form>
+
                             <hr>
                             <div class="text-center">
                                 <a class="small" href="forgot-password.php">Forgot Password?</a>
