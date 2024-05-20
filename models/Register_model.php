@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
         // // Prepare SQL statement to prevent SQL injection
-        $sql = "INSERT INTO users (name, email, password, avatar, level) VALUES (:name, :password, :email, :avatarname, :level)";
+        $sql = "INSERT INTO users (name, email, password, avatar, level) VALUES (:name, :email, :password, :avatarname, :level)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':password', $password);
