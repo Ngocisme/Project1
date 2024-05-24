@@ -1,10 +1,10 @@
 <?php
-    session_start();
+session_start();
 
-    if (!isset($_SESSION['user']['name'])) {
-        header("Location: http://localhost:8888/keitaizoneTemplate/views/admin/login.php");
-        exit();
-    }
+if (!isset($_SESSION['user']['name'])) {
+    header("Location: http://localhost:8888/keitaizoneTemplate/views/admin/login.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +27,24 @@
 
     <!-- Custom styles for this template-->
     <link href="../../assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <style>
+        .image-container {
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            /* Đảm bảo ảnh không tràn ra ngoài container */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Cắt và chỉnh kích thước hình ảnh để lấp đầy container */
+        }
+    </style>
 
 </head>
 
@@ -81,6 +99,7 @@
                         <h6 class="collapse-header">Managements Pages</h6>
                         <a class="collapse-item" href="./Category_Show.php">Brands</a>
                         <a class="collapse-item" href="./ProductCategory_Show.php">Product Categories</a>
+                        <a class="collapse-item" href="./Product_Show.php">Products</a>
                         <a class="collapse-item" href="login.php">Users</a>
                         <a class="collapse-item" href="login.php">Comments</a>
                         <a class="collapse-item" href="login.php">Orders</a>
@@ -169,7 +188,7 @@
                             </div>
                         </li>
 
-                       
+
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
@@ -177,7 +196,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    <?php echo $_SESSION['user']['name']  ?>
+                                    <?php echo $_SESSION['user']['name'] ?>
                                 </span>
                                 <img class="img-profile rounded-circle"
                                     src="../../assets/admin/img/users/<?php echo $_SESSION['user']['avatar'] ?>">

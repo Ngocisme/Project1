@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+// Kiểm tra nếu cookies tồn tại
+$remembered_email = isset($_COOKIE['remembered_email']) ? $_COOKIE['remembered_email'] : '';
+$remembered_password = isset($_COOKIE['remembered_password']) ? $_COOKIE['remembered_password'] : '';
 ?>
 
 <!DOCTYPE html>
@@ -51,29 +55,35 @@ session_start();
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." name="email">
+                                                placeholder="Enter Email Address..." name="email"
+                                                value="<?php echo htmlspecialchars($remembered_email) ?>">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password" name="password">
+                                                id="exampleInputPassword" placeholder="Password" name="password"
+                                                value="<?php echo htmlspecialchars($remembered_password) ?>">
                                         </div>
+
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck"
+                                                    name="remember" <?php echo ($remembered_email && $remembered_password) ? 'checked' : ''; ?>>
                                                 <label class="custom-control-label" for="customCheck">Remember
                                                     Me</label>
                                             </div>
                                         </div>
+
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                                         <p class='text-success'><?php
-                                        if(isset($_GET['success'])){
-                                            echo $_GET['success'];} ?>
-                                        
+                                        if (isset($_GET['success'])) {
+                                            echo $_GET['success'];
+                                        } ?>
+
                                         </p>
                                         <p class='danger text-danger'>
-                                            <?php 
-                                            if(isset( $_GET['err'])){
-                                            echo $_GET['err'] ;
+                                            <?php
+                                            if (isset($_GET['err'])) {
+                                                echo $_GET['err'];
                                             }
                                             ?>
                                         </p>

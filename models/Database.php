@@ -11,6 +11,9 @@ function check($check){
   print_r($check);
   echo "</pre>";
 }
+function formatCurrencyVND($amount) {
+  return number_format($amount, 0, ',', '.') . ' VND';
+}
 
 /// Check Database connect
 try {
