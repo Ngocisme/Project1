@@ -155,17 +155,17 @@ ob_end_flush();
             <div class="border-bottom pb-2">
                 <div class="d-flex justify-content-between mb-3">
                     <h6>Subtotal</h6>
-                    <h6>$<?php echo $subTotal; ?></h6>
+                    <h5><?php echo formatCurrencyVND($total); ?></h5>
                 </div>
                 <div class="d-flex justify-content-between">
                     <h6 class="font-weight-medium">Shipping</h6>
-                    <h6 class="font-weight-medium">$<?php echo $shippingFee; ?></h6>
+                    <h6 class="font-weight-medium"><?php echo $shippingFee; ?>VND</h6>
                 </div>
             </div>
                 <div class="pt-2">
                 <div class="d-flex justify-content-between mt-2">
                     <h5>Total</h5>
-                    <h5>$<?php echo $total; ?></h5>
+                    <h5><?php echo formatCurrencyVND($total); ?></h5>
                 </div>
                 <a href="checkout.php" class="btn btn-block btn-primary font-weight-bold my-3 py-3 ">Proceed To Checkout</a>
              </div>

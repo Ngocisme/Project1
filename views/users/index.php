@@ -85,7 +85,7 @@ $products = $stmt->fetchAll();
                             <a class="btn btn-outline-dark btn-square" href="./../users/cart.php?id=<?php echo $item ['id'] ?>"><i class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href="./../users/detail.php"><i class="fa fa-search"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="./../users/detail.php?product_id=<?=$item['id']?>"><i class="fa fa-search"></i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
