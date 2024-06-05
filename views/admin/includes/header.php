@@ -100,9 +100,7 @@ if (!isset($_SESSION['user']['name'])) {
                         <a class="collapse-item" href="./Category_Show.php">Brands</a>
                         <a class="collapse-item" href="./ProductCategory_Show.php">Product Categories</a>
                         <a class="collapse-item" href="./Product_Show.php">Products</a>
-                        <a class="collapse-item" href="login.php">Users</a>
-                        <a class="collapse-item" href="login.php">Comments</a>
-                        <a class="collapse-item" href="login.php">Orders</a>
+                        <a class="collapse-item" href="./User_Show.php">Users</a>
                         <div class="collapse-divider"></div>
                     </div>
                 </div>
