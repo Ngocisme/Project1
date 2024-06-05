@@ -1,8 +1,8 @@
 <?php
 
 // include_once "../config.php";
-$servername = "localhost";
-$username = "mamp";
+$servername = "127.0.0.1";
+$username = "root";
 $password = "";
 $database = "KeiTaiZonePHP";
 

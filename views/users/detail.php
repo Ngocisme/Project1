@@ -27,16 +27,16 @@ include_once "../users/includes/header.php";
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner bg-light">
                         <div class="carousel-item active">
-                            <img class="w-100 h-100" src="img/product-1.jpg" alt="Image">
+                            <img class="w-100 h-100" src="../../assets/users/img/products/iphone-12-pro-max-xanh.jpg.webp" alt="Image">
                         </div>
                         <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/product-2.jpg" alt="Image">
+                            <img class="w-100 h-100" src="../../assets/users/img/products/nokia520.jpeg" alt="Image">
                         </div>
                         <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/product-3.jpg" alt="Image">
+                            <img class="w-100 h-100" src="../../assets/users/img/products/iphone15.webp" alt="Image">
                         </div>
                         <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/product-4.jpg" alt="Image">
+                            <img class="w-100 h-100" src=" ../../assets/users/img/products/iphone13.webp" alt="Image">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
@@ -50,7 +50,7 @@ include_once "../users/includes/header.php";
 
             <div class="col-lg-7 h-auto mb-30">
                 <div class="h-100 bg-light p-30">
-                    <h3>Product Name Goes Here</h3>
+                    <h3>IPHONE 11 256G</h3>
                     <div class="d-flex mb-3">
                         <div class="text-primary mr-2">
                             <small class="fas fa-star"></small>
@@ -62,9 +62,21 @@ include_once "../users/includes/header.php";
                         <small class="pt-1">(99 Reviews)</small>
                     </div>
                     <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
-                    <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
-                        clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
-                        Nonumy</p>
+                    <p class="mb-4">Bảo hành 12 tháng
+
+Sản phẩm gồm: máy + cáp sạc
+
+Dung lượng bộ nhớ (ROM): Lưu trữ thoải mái 15.000 khung hình đỉnh cao, 15.000 bức ảnh Live, quay video 4K tới 18 giờ và 6.000 bài nhạc.
+
+Thiết kế: Khung viền mới chất liệu Titanium - đạt kỷ lục viền máy siêu mảnh kết hợp 4 cạnh bo cong.
+
+Màn hình: Độ sáng màn hình lên tới 2.000 nits đẳng cấp chưa từng thấy.
+
+Camera: Ống kính tiềm vọng zoom 5x độc quyền cho khả năng thu phóng “đạt đỉnh”.
+
+Chipset: Vi xử lý A17 Pro ở tiến trình sản xuất 3nm giúp tốc độ xử lý và tối ưu điện năng tăng đột biến tới tới 35%.
+
+</p>
                     <div class="d-flex mb-3">
                         <strong class="text-dark mr-3">Sizes:</strong>
                         <form>
@@ -129,8 +141,8 @@ include_once "../users/includes/header.php";
                                 </button>
                             </div>
                         </div>
-                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
-                            Cart</button>
+                        <a href="./../users/cart.php?id "><button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
+                            Cart</button> </a>
                     </div>
                     <div class="d-flex pt-2">
                         <strong class="text-dark mr-2">Share on:</strong>
@@ -349,7 +361,7 @@ include_once "../users/includes/header.php";
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/product-4.jpg" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="./../users/cart.php"><i class="fa fa-shopping-cart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>

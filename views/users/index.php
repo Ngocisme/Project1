@@ -82,10 +82,10 @@ $products = $stmt->fetchAll();
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="../../assets/users/img/products/<?= $item['img'] ?>" alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="./../users/cart.php?id=<?php echo $item ['id'] ?>"><i class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="./../users/detail.php"><i class="fa fa-search"></i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
