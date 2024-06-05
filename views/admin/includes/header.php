@@ -17,7 +17,7 @@ if (!isset($_SESSION['user']['name'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - 404</title>
+    <title>Admin KeitaiZone</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -61,7 +61,7 @@ if (!isset($_SESSION['user']['name'])) {
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Admin KeitaiZone</div>
             </a>
 
             <!-- Divider -->
