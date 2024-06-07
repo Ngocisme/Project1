@@ -51,6 +51,7 @@ if (isset($_POST['update_item'])) {
 
     // Kiểm tra số lượng sản phẩm để đảm bảo rằng nó là số nguyên và không âm
     $quantity = max(1, $quantity);
+    
 
     // Kiểm tra xem giỏ hàng đã được khởi tạo hay chưa
     if (!isset($_SESSION['cart'])) { 
