@@ -1,7 +1,8 @@
-<!-- <?php
-// require_once "../../models/Database.php"
-// Check PHP database connect
-?> -->
+<?php
+//   session_start();
+  include_once "../../models/Database.php";
+//   check($_SESSION);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,26 +30,6 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../../assets/users/css/style.css" rel="stylesheet">
-    <!-- <script>
-        function redirectToHome() {
-            window.location.href = "index.php"
-        }
-        function redirectToCart() {
-            window.location.href = "cart.php"
-        }
-        function redirectToCheckout() {
-            window.location.href = "checkout.php"
-        }
-        function redirectToContact() {
-            window.location.href = "contact.php"
-        }
-        function redirectToDetail() {
-            window.location.href = "detail.php"
-        }
-        function redirectToShop() {
-            window.location.href = "shop.php"
-        }
-    </script> -->
 </head>
 
 <body>
@@ -66,8 +47,9 @@
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My
-                            Account</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+                            My Account
+                        </button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="./../admin/login.php" class="dropdown-item">Login</a>
                             <a href="./../admin/register.php" class="dropdown-item">Register</a>

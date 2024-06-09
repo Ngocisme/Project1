@@ -104,6 +104,9 @@ $remembered_password = isset($_COOKIE['remembered_password']) ? $_COOKIE['rememb
                                     <div class="text-center">
                                         <a class="small" href="register.php">Create an Account!</a>
                                     </div>
+                                    <div class="text-center">
+                                        <a class="small" href="../users/index.php">Back to Shop</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
