@@ -1,6 +1,5 @@
 <?php
 ob_start();
-session_start();
 include_once "../users/includes/header.php";
 include_once "../../models/Database.php";
 
@@ -17,7 +16,7 @@ if($id !== null) {
                 'name'=> $product['name'],
                 'price'=> $product['price'],
                 'qty'=> 1,
-                'total' => $product['price'] // Khởi tạo total bằng giá sản phẩm ban đầu
+                'total' => $product['price'] 
             ];
             if(isset($_SESSION['cart'][$id])){
                      $_SESSION['cart'][$id]['qty'] += 1;
@@ -31,43 +30,30 @@ if($id !== null) {
 }
 
 $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-//update so lượng
-//if(isset($_POST['update_item'])) {
-    //$id = $_POST['update_item'];
-    //$quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
-    
-    // Kiểm tra số lượng sản phẩm để đảm bảo rằng nó là số nguyên và không âm
-   // $quantity = max(1, $quantity);
-    
-    // Cập nhật số lượng sản phẩm
-    //$_SESSION['cart'][$id]['qty'] = $quantity;
-    
-    // Tính toán lại tổng giá trị của sản phẩm
-    //$_SESSION['cart'][$id]['total'] = $_SESSION['cart'][$id]['price'] * $quantity;
-//}
+
 if (isset($_POST['update_item'])) {
     $id = $_POST['update_item'];
     $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
 
-    // Kiểm tra số lượng sản phẩm để đảm bảo rằng nó là số nguyên và không âm
+    
     $quantity = max(1, $quantity);
     
 
-    // Kiểm tra xem giỏ hàng đã được khởi tạo hay chưa
+   
     if (!isset($_SESSION['cart'])) { 
         $_SESSION['cart'] = array();
     }
 
-    // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
+    
     if (array_key_exists($id, $_SESSION['cart'])) {
-        // Cập nhật số lượng sản phẩm
+        
         $_SESSION['cart'][$id]['qty'] = $quantity;
 
-        // Tính toán lại tổng giá trị của sản phẩm
+        
         $_SESSION['cart'][$id]['total'] = $_SESSION['cart'][$id]['price'] * $quantity;
     }
 }
-//xoa item 
+
 if(isset($_POST['remove_item'])) {
     $remove_id = $_POST['remove_item'];
     unset($cart[$remove_id]);
@@ -75,14 +61,14 @@ if(isset($_POST['remove_item'])) {
     header("Location: cart.php");
     exit;
 }
-// Tính Subtotal
+
 $subTotal = 0;
 foreach($cart as $id => $item) {
     $subTotal += $item['total'];
 }
 
-// Phí shipping cố định
-$shippingFee = 20000; // Giả sử phí shipping là $10
+
+$shippingFee = 0; // Giả sử phí shipping là $10
 
 // Tính Total
 $total = $subTotal + $shippingFee;

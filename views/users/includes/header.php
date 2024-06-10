@@ -1,7 +1,6 @@
 <?php
-//   session_start();
-  include_once "../../models/Database.php";
-//   check($_SESSION);
+  session_start();
+ include_once "../../models/ProductAll_model.php";
 ?>
 
 <!DOCTYPE html>

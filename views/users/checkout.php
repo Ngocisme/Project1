@@ -1,29 +1,99 @@
 <?php
-
+ob_start();
 include_once "../users/includes/header.php";
 include_once "../../models/Database.php";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $checkout_fullname = $_POST['fullname'];
-    $checkout_email = $_POST['email'];
-    $checkout_phone = $_POST['phone'];
-    $checkout_address = $_POST['address'];
-    $checkout_city = $_POST['city'];
-    $checkout_district = $_POST['district'];
-    $checkout_ward = $_POST['ward'];
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
-    // $array_checkout = [
-    //     $checkout_fullname,
-    //     $checkout_email,
-    //     $checkout_phone,
-    //     $checkout_address,
-    //     $checkout_city,
-    //     $checkout_district,
-    //     $checkout_ward
-    // ];
+if ($id !== null) {
+    $sql = "SELECT * FROM products WHERE id = $id";
+    $stmt = $conn->query($sql);
+    if ($stmt) {
+        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($product) {
+            $item = [
+                'id' => $product['id'],
+                'name' => $product['name'],
+                'price' => $product['price'],
+                'qty' => 1,
+                'total' => $product['price']
+            ];
+            if (isset($_SESSION['cart'][$id])) {
+                $_SESSION['cart'][$id]['qty'] += 1;
+            } else {
+                $_SESSION['cart'][$id] = $item;
+            }
+        }
+    }
 
-    // check($array_checkout);
+    unset($_GET['id']);
 }
+
+$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+
+if (isset($_POST['update_item'])) {
+    $id = $_POST['update_item'];
+    $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
+
+
+    $quantity = max(1, $quantity);
+
+
+
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = array();
+    }
+
+
+    if (array_key_exists($id, $_SESSION['cart'])) {
+
+        $_SESSION['cart'][$id]['qty'] = $quantity;
+
+
+        $_SESSION['cart'][$id]['total'] = $_SESSION['cart'][$id]['price'] * $quantity;
+    }
+}
+
+if (isset($_POST['remove_item'])) {
+    $remove_id = $_POST['remove_item'];
+    unset($cart[$remove_id]);
+    $_SESSION['cart'] = $cart;
+    header("Location: cart.php");
+    exit;
+}
+
+$subTotal = 0;
+foreach ($cart as $id => $item) {
+    $subTotal += $item['total'];
+}
+
+
+$shippingFee = 20000; // Giả sử phí shipping là $10
+
+// Tính Total
+$total = $subTotal + $shippingFee;
+ob_end_flush();
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     $checkout_fullname = $_POST['fullname'];
+//     $checkout_email = $_POST['email'];
+//     $checkout_phone = $_POST['phone'];
+//     $checkout_address = $_POST['address'];
+//     $checkout_city = $_POST['city'];
+//     $checkout_district = $_POST['district'];
+//     $checkout_ward = $_POST['ward'];
+
+//     // $array_checkout = [
+//     //     $checkout_fullname,
+//     //     $checkout_email,
+//     //     $checkout_phone,
+//     //     $checkout_address,
+//     //     $checkout_city,
+//     //     $checkout_district,
+//     //     $checkout_ward
+//     // ];
+
+//     // check($array_checkout);
+// }
 ?>
 
 <!-- Checkout Start -->
@@ -84,31 +154,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="col-lg-4">
             <h5 class="section-title position-relative text-uppercase mb-3">
                 <span class="bg-secondary pr-3">
-                Tổng giá tiền sản phẩm
+                    Tổng giá tiền sản phẩm
                 </span>
-                </h5>
+            </h5>
             <div class="bg-light p-30 mb-5">
-                <div class="border-bottom">
-                    <h6 class="mb-3">Products</h6>
-                    <div class="d-flex justify-content-between">
-                        <p>Product Name 3</p>
-                        <p>$150</p>
+                <h6 class="mb-3">Sản Phẩm</h6>
+                <?php foreach ($cart as $id => $item): ?>
+                    <div class="border-bottom">
+                        <div class="d-flex justify-content-between">
+                            <p><?= $item['name'] ?></p>
+                            <p><?= formatCurrencyVND($item['price']) ?></p>
+                        </div>
                     </div>
-                </div>
-                <div class="border-bottom pt-3 pb-2">
-                    <div class="d-flex justify-content-between mb-3">
-                        <h6>Subtotal</h6>
-                        <h6>$150</h6>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-medium">Shipping</h6>
-                        <h6 class="font-weight-medium">$10</h6>
-                    </div>
-                </div>
+                <?php endforeach ?>
+
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
-                        <h5>Total</h5>
-                        <h5>$160</h5>
+                        <h5>Tổng đơn hàng</h5>
+                        <h5><?= formatCurrencyVND($item['total']) ?></h5>
                     </div>
                 </div>
             </div>

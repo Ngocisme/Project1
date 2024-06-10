@@ -1,15 +1,5 @@
 <?php
-
 include_once "../users/includes/header.php";
-include_once "../../models/Database.php";
-
-$sql = "SELECT * FROM products";
-
-$stmt = $conn->query($sql);
-
-$products = $stmt->fetchAll();
-
-
 ?>
 
 <!-- Carousel Start -->
@@ -87,20 +77,11 @@ $products = $stmt->fetchAll();
                         <a class="h6 text-decoration-none text-truncate" href=""><?= $item['name'] ?></a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                         <h5><?= formatCurrencyVND($item['price'])?> VNĐ</h5>
-                            <!-- <h6 class="text-muted ml-2"><del>$123.00</del></h6> -->
                         </div>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <p><?= $item['Views'] ?> views</p>
-                            <!-- <h6 class="text-muted ml-2"><del>$123.00</del></h6> -->
                         </div>
-                        <!-- <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="far fa-star text-primary mr-1"></small>
-                            <small class="far fa-star text-primary mr-1"></small>
-                            <small>(99)</small>
-                        </div> -->
+
                     </div>
 
                 </div>

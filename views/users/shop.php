@@ -1,8 +1,5 @@
 <?php
-
 include_once "../users/includes/header.php";
-include_once "../../models/ProductAll_model.php";
-
 ?>
 
 
