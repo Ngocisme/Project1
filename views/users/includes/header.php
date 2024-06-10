@@ -1,14 +1,15 @@
-<!-- <?php
-// require_once "../../models/Database.php"
-// Check PHP database connect
-?> -->
+<?php
+//   session_start();
+  include_once "../../models/Database.php";
+//   check($_SESSION);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>MultiShop - Online Shop Website Template</title>
+    <title>KEITAIZone || Home</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -29,26 +30,6 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../../assets/users/css/style.css" rel="stylesheet">
-    <!-- <script>
-        function redirectToHome() {
-            window.location.href = "index.php"
-        }
-        function redirectToCart() {
-            window.location.href = "cart.php"
-        }
-        function redirectToCheckout() {
-            window.location.href = "checkout.php"
-        }
-        function redirectToContact() {
-            window.location.href = "contact.php"
-        }
-        function redirectToDetail() {
-            window.location.href = "detail.php"
-        }
-        function redirectToShop() {
-            window.location.href = "shop.php"
-        }
-    </script> -->
 </head>
 
 <body>
@@ -66,8 +47,9 @@
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My
-                            Account</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+                            My Account
+                        </button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="./../admin/login.php" class="dropdown-item">Login</a>
                             <a href="./../admin/register.php" class="dropdown-item">Register</a>
@@ -109,8 +91,8 @@
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
                 <a href="" class="text-decoration-none">
-                    <span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
-                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
+                    <span class="h1 text-uppercase text-primary bg-dark px-2">KEITAI</span>
+                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Zone</span>
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
@@ -126,8 +108,8 @@
                 </form>
             </div>
             <div class="col-lg-4 col-6 text-right">
-                <p class="m-0">Liên Hệ</p>
-                <h5 class="m-0">0837379139</h5>
+                <p class="m-0">Customer Service</p>
+                <h5 class="m-0">+012 345 6789</h5>
             </div>
         </div>
     </div>
