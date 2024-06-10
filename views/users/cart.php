@@ -82,12 +82,12 @@ foreach($cart as $id => $item) {
 }
 
 // Phí shipping cố định
-$shippingFee = 0; // Giả sử phí shipping là $10
+$shippingFee = 20000; // Giả sử phí shipping là $10
 
 // Tính Total
 $total = $subTotal + $shippingFee;
 ob_end_flush();
-?>x
+?>
 <!-- Cart Start -->
 <div class="container-fluid">
     <div class="row px-xl-5">
@@ -107,7 +107,7 @@ ob_end_flush();
                     <tr>
                         <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"><?php echo $item['name']?>
                         </td>
-                        <td class="align-middle"><?php echo $item['price']?></td>
+                        <td class="align-middle"><?php echo formatCurrencyVND($item['price'])?></td>
                         <td class="align-middle">
                             <form method="post">
                                 <input type="hidden" name="update_item" value="<?php echo $id ?>">
@@ -126,7 +126,7 @@ ob_end_flush();
                                 </div>
                             </form>
                         </td>
-                        <td class="align-middle"><?php echo $item['total']?></td>
+                        <td class="align-middle"><?php echo formatCurrencyVND($item['total'])?></td>
                         <td class="align-middle">
                             <form method="post">
                                 <input type="hidden" name="remove_item" value="<?php echo $id ?>">
@@ -160,13 +160,13 @@ ob_end_flush();
                 </div>
                 <div class="d-flex justify-content-between">
                     <h6 class="font-weight-medium">Shipping</h6>
-                    <h6 class="font-weight-medium"><?php echo $shippingFee; ?>VND</h6>
+                    <h6 class="font-weight-medium"><?php echo formatCurrencyVND($shippingFee); ?></h6>
                 </div>
             </div>
                 <div class="pt-2">
                 <div class="d-flex justify-content-between mt-2">
                     <h5>Total</h5>
-                    <h5><?php echo formatCurrencyVND($total); ?></h5>
+                    <h5><?php echo formatCurrencyVND($total+$shippingFee); ?></h5>
                 </div>
                 <a href="checkout.php" class="btn btn-block btn-primary font-weight-bold my-3 py-3 ">Proceed To Checkout</a>
              </div>

@@ -74,7 +74,8 @@ $remembered_password = isset($_COOKIE['remembered_password']) ? $_COOKIE['rememb
                                         </div>
 
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
-                                        <p class='text-success'><?php
+                                        <p class='text-success'>
+                                        <?php
                                         if (isset($_GET['success'])) {
                                             echo $_GET['success'];
                                         } ?>
