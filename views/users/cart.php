@@ -82,12 +82,12 @@ foreach($cart as $id => $item) {
 }
 
 // Phí shipping cố định
-$shippingFee = 10; // Giả sử phí shipping là $10
+$shippingFee = 0; // Giả sử phí shipping là $10
 
 // Tính Total
 $total = $subTotal + $shippingFee;
 ob_end_flush();
-?>
+?>x
 <!-- Cart Start -->
 <div class="container-fluid">
     <div class="row px-xl-5">
@@ -95,11 +95,11 @@ ob_end_flush();
             <table class="table table-light table-borderless table-hover text-center mb-0">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Products</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Remove</th>
+                        <th>Sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng giá</th>
+                        <th>Xóa </th>
                     </tr>
                 </thead>
                 <tbody class="align-middle">

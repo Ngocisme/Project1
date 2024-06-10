@@ -23,10 +23,10 @@ $products = $stmt->fetchAll();
                     <li data-target="#header-carousel" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item position-relative active" style="height: 430px;">
-                        <img class="position-absolute w-100 h-100" src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/iphone-15-pro-max-nang-cap-camera.jpg" style="object-fit: fill;">
+                    <div style="width:100%; height: 430px;" class="carousel-item position-relative active" >
+                        <img class="position-absolute " src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/iphone-15-pro-max-nang-cap-camera.jpg" style="object-fit: fill;">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <div class="p-3" style="max-width: 700px;">
+                            <div class="p-3">
                                 <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">
                                 </h1>
                                 <p class="mx-md-5 px-5 animate__animated animate__bounceIn">
@@ -37,9 +37,9 @@ $products = $stmt->fetchAll();
                         </div>
                     </div>
                     <div class="carousel-item position-relative" style="height: 430px;">
-                        <img class="position-absolute w-100 h-100" src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/samsung-24-sliding2024.png" style="object-fit: fill;">
+                        <img class="position-absolute " src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/samsung-24-sliding2024.png" style="object-fit: fill;">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <div class="p-3" style="max-width: 700px;">
+                            <div class="p-3" >
                                 <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown"></h1>
                                 <p class="mx-md-5 px-5 animate__animated animate__bounceIn">
                                     </p>
@@ -49,9 +49,9 @@ $products = $stmt->fetchAll();
                         </div>
                     </div>
                     <div class="carousel-item position-relative" style="height: 430px;">
-                        <img class="position-absolute w-100 h-100" src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/xiaomi-14-ultra-sliding-31-5-2024.jpg" style="object-fit: fill;">
+                        <img class="position-absolute " src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/xiaomi-14-ultra-sliding-31-5-2024.jpg" style="object-fit: fill;">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <div class="p-3" style="max-width: 700px;">
+                            <div class="p-3" >
                                 <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">
                                 </h1>
                                 <p class="mx-md-5 px-5 animate__animated animate__bounceIn"></p>

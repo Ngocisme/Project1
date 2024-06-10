@@ -69,7 +69,7 @@ $prod = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 <div class="d-flex align-items-center mb-4 pt-2">
 
-                    <a href="./../users/cart.php?id "><button class="btn btn-primary px-3"><i
+                    <a href="./../users/cart.php "><button class="btn btn-primary px-3"><i
                                 class="fa fa-shopping-cart mr-1"></i> Add To
                             Cart</button> </a>
                 </div>
