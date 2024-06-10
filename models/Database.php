@@ -2,7 +2,7 @@
 
 // include_once "../config.php";
 $servername = "localhost";
-$username = "mamp";
+$username = "root";
 $password = "";
 $database = "KeiTaiZonePHP";
 
