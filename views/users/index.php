@@ -7,41 +7,47 @@ include_once "../users/includes/header.php";
     <div class="row px-xl-5">
         <div class="col-lg-12">
             <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
-                <ol class="carousel-indicators">    
+                <ol class="carousel-indicators">
                     <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
                     <li data-target="#header-carousel" data-slide-to="1"></li>
                     <li data-target="#header-carousel" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div style="width:100%; height: 430px;" class="carousel-item position-relative active" >
-                        <img class="position-absolute " src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/iphone-15-pro-max-nang-cap-camera.jpg" style="object-fit: fill;">
+                    <div style="width:100%; height: 430px;" class="carousel-item position-relative active">
+                        <img class="position-absolute "
+                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/iphone-15-pro-max-nang-cap-camera.jpg"
+                            style="object-fit: fill;">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3">
                                 <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">
                                 </h1>
                                 <p class="mx-md-5 px-5 animate__animated animate__bounceIn">
-                                    </p>
+                                </p>
                                 <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
                                     href="#">Shop Now</a>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item position-relative" style="height: 430px;">
-                        <img class="position-absolute " src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/samsung-24-sliding2024.png" style="object-fit: fill;">
+                        <img class="position-absolute "
+                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/samsung-24-sliding2024.png"
+                            style="object-fit: fill;">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <div class="p-3" >
+                            <div class="p-3">
                                 <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown"></h1>
                                 <p class="mx-md-5 px-5 animate__animated animate__bounceIn">
-                                    </p>
+                                </p>
                                 <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
                                     href="#">Shop Now</a>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item position-relative" style="height: 430px;">
-                        <img class="position-absolute " src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/xiaomi-14-ultra-sliding-31-5-2024.jpg" style="object-fit: fill;">
+                        <img class="position-absolute "
+                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:90/plain/https://dashboard.cellphones.com.vn/storage/xiaomi-14-ultra-sliding-31-5-2024.jpg"
+                            style="object-fit: fill;">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <div class="p-3" >
+                            <div class="p-3">
                                 <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">
                                 </h1>
                                 <p class="mx-md-5 px-5 animate__animated animate__bounceIn"></p>
@@ -59,7 +65,8 @@ include_once "../users/includes/header.php";
 
 <!-- Products Start -->
 <div class="container-fluid pt-5 pb-3">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Danh Mục Sản Phẩm</span></h2>
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Danh Mục Sản
+            Phẩm</span></h2>
     <div class="row px-xl-5">
         <?php foreach ($products as $item) { ?>
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
@@ -69,20 +76,30 @@ include_once "../users/includes/header.php";
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="../../assets/users/img/products/<?= $item['img'] ?>" alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href="./../users/cart.php?id=<?php echo $item ['id'] ?>"><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href="./../users/detail.php?product_id=<?=$item['id']?>"><i class="fa fa-search"></i></a>
+                            <a class="btn btn-outline-dark btn-square"
+                                href="./../users/detail.php?product_id=<?= $item['id'] ?>"><i class="fa fa-search"></i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
                         <a class="h6 text-decoration-none text-truncate" href=""><?= $item['name'] ?></a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                        <h5><?= formatCurrencyVND($item['price'])?> VNĐ</h5>
+                            <h5><?= formatCurrencyVND($item['price']) ?> VNĐ</h5>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <p><?= $item['Views'] ?> views</p>
                         </div>
-
                     </div>
+                    <form action="../../views/users/cart.php" method="post">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <input type="number" name="qty" value="1" min="1" max="99">
+                            <input type="submit" name="addToCart" value="Thêm vào giỏ hàng" class="btn btn-primary px-3">
+                            <input type="hidden" name="name" value="<?= $item['name'] ?>">
+                            <input type="hidden" name="price" value="<?= $item['price'] ?>">
+                            <input type="hidden" name="img" value="<?= $item['img'] ?>">
+                        </div>
+
+                    </form>
+
 
                 </div>
             </div>
@@ -143,7 +160,7 @@ include_once "../users/includes/header.php";
                     <div class="text-center py-4">
                         <a class="h6 text-decoration-none text-truncate" href=""><?= $item['name'] ?></a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5><?= formatCurrencyVND($item['price'])?> VNĐ</h5>
+                            <h5><?= formatCurrencyVND($item['price']) ?> VNĐ</h5>
                             <!-- <h6 class="text-muted ml-2"><del>$123.00</del></h6> -->
                         </div>
                         <div class="d-flex align-items-center justify-content-center mt-2">

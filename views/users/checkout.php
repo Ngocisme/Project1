@@ -1,78 +1,8 @@
 <?php
-ob_start();
+
 include_once "../users/includes/header.php";
 include_once "../../models/Database.php";
 
-$id = isset($_GET['id']) ? $_GET['id'] : null;
-
-if ($id !== null) {
-    $sql = "SELECT * FROM products WHERE id = $id";
-    $stmt = $conn->query($sql);
-    if ($stmt) {
-        $product = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($product) {
-            $item = [
-                'id' => $product['id'],
-                'name' => $product['name'],
-                'price' => $product['price'],
-                'qty' => 1,
-                'total' => $product['price']
-            ];
-            if (isset($_SESSION['cart'][$id])) {
-                $_SESSION['cart'][$id]['qty'] += 1;
-            } else {
-                $_SESSION['cart'][$id] = $item;
-            }
-        }
-    }
-
-    unset($_GET['id']);
-}
-
-$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-
-if (isset($_POST['update_item'])) {
-    $id = $_POST['update_item'];
-    $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
-
-
-    $quantity = max(1, $quantity);
-
-
-
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = array();
-    }
-
-
-    if (array_key_exists($id, $_SESSION['cart'])) {
-
-        $_SESSION['cart'][$id]['qty'] = $quantity;
-
-
-        $_SESSION['cart'][$id]['total'] = $_SESSION['cart'][$id]['price'] * $quantity;
-    }
-}
-
-if (isset($_POST['remove_item'])) {
-    $remove_id = $_POST['remove_item'];
-    unset($cart[$remove_id]);
-    $_SESSION['cart'] = $cart;
-    header("Location: cart.php");
-    exit;
-}
-
-$subTotal = 0;
-foreach ($cart as $id => $item) {
-    $subTotal += $item['total'];
-}
-
-
-$shippingFee = 20000; // Giả sử phí shipping là $10
-
-// Tính Total
-$total = $subTotal + $shippingFee;
-ob_end_flush();
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //     $checkout_fullname = $_POST['fullname'];
 //     $checkout_email = $_POST['email'];
@@ -159,19 +89,17 @@ ob_end_flush();
             </h5>
             <div class="bg-light p-30 mb-5">
                 <h6 class="mb-3">Sản Phẩm</h6>
-                <?php foreach ($cart as $id => $item): ?>
                     <div class="border-bottom">
                         <div class="d-flex justify-content-between">
-                            <p><?= $item['name'] ?></p>
-                            <p><?= formatCurrencyVND($item['price']) ?></p>
+                            <p>sản phẩm a</p>
+                            <p>29000vnd</p>
                         </div>
                     </div>
-                <?php endforeach ?>
 
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
-                        <h5>Tổng đơn hàng</h5>
-                        <h5><?= formatCurrencyVND($item['total']) ?></h5>
+                        <h5>Tổng đơn hàng hoá</h5>
+                        <h5>350000vnd</h5>
                     </div>
                 </div>
             </div>

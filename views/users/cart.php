@@ -1,163 +1,107 @@
 <?php
-ob_start();
 include_once "../users/includes/header.php";
 include_once "../../models/Database.php";
 
-$id = isset($_GET['id']) ? $_GET['id'] : null;
+if (!isset($_SESSION['cart']))
+    $_SESSION['cart'] = [];
 
-if($id !== null) {
-    $sql = "SELECT * FROM products WHERE id = $id";
-    $stmt = $conn->query($sql);
-    if($stmt) {
-        $product = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($product) {
-            $item = [ 
-                'id'=> $product['id'],
-                'name'=> $product['name'],
-                'price'=> $product['price'],
-                'qty'=> 1,
-                'total' => $product['price'] 
-            ];
-            if(isset($_SESSION['cart'][$id])){
-                     $_SESSION['cart'][$id]['qty'] += 1;
-                 }else{
-                    $_SESSION['cart'][$id]=$item;
-                 }
+if (isset($_GET['delete_cart']) && ($_GET['delete_cart'] == 1))
+    unset($_SESSION['cart']);
+
+if (isset($_POST['addToCart']) && ($_POST['addToCart'])) {
+    $nameCart = $_POST['name'];
+    $priceCart = $_POST['price'];
+    $imgCart = $_POST['img'];
+    $qtyCart = $_POST['qty'];
+
+    $check = 0;
+
+    for ($i=0; $i < sizeof($_SESSION['cart']) ; $i++) { 
+        if($_SESSION['cart'][$i][0] === $nameCart)
+        {
+            $check == 1;
+            $count = $qty + $_SESSION['cart'][$i][3];
+            $_SESSION['cart'][$i][3] = $count;
+            break;
         }
     }
 
-    unset($_GET['id']);
-}
-
-$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-
-if (isset($_POST['update_item'])) {
-    $id = $_POST['update_item'];
-    $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
-
+    if($check === 0)
+    {
+        $cartArray = [
+            $nameCart,
+            $priceCart,
+            $imgCart,
+            $qtyCart
+        ];
     
-    $quantity = max(1, $quantity);
-    
-
-   
-    if (!isset($_SESSION['cart'])) { 
-        $_SESSION['cart'] = array();
+        $_SESSION['cart'][] = $cartArray;
     }
 
-    
-    if (array_key_exists($id, $_SESSION['cart'])) {
-        
-        $_SESSION['cart'][$id]['qty'] = $quantity;
-
-        
-        $_SESSION['cart'][$id]['total'] = $_SESSION['cart'][$id]['price'] * $quantity;
+    check($_SESSION['cart']);
+    function showCartItem()
+    {
+        if (isset($_SESSION['cart']) && (is_array($_SESSION['cart']))) {
+            $totalBill = 0;
+            for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
+                $total = $_SESSION['cart'][$i][1] * $_SESSION['cart'][$i][3];
+                $totalBill+=$total;
+                echo '
+            <tr>
+                <td class="align-middle">'.($i+1).'</td>
+                <td class="align-middle">'.$_SESSION['cart'][$i][0].'</td>
+                <td class="align-middle">'.formatCurrencyVND($_SESSION['cart'][$i][1]).'</td>
+                <td class="align-middle">
+                    <img src="../../assets/users/img/products/'.$_SESSION['cart'][$i][2].'" alt="" style="width: 50px; height: 50px">
+                </td>
+                <td class="align-middle">'.$_SESSION['cart'][$i][3].'</td>
+                <td class="align-middle">'.formatCurrencyVND($total).'</td>
+                <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
+            </tr>
+                ';
+            }
+            echo '
+                <tr>
+                    <th colspan="5">Tổng đơn hàng: </th>
+                    <th>
+                        <div>'.formatCurrencyVND($totalBill).'</div>
+                    </th>
+                </tr>
+            ';
+        }
     }
 }
 
-if(isset($_POST['remove_item'])) {
-    $remove_id = $_POST['remove_item'];
-    unset($cart[$remove_id]);
-    $_SESSION['cart'] = $cart;
-    header("Location: cart.php");
-    exit;
-}
-
-$subTotal = 0;
-foreach($cart as $id => $item) {
-    $subTotal += $item['total'];
-}
-
-
-$shippingFee = 0; // Giả sử phí shipping là $10
-
-// Tính Total
-$total = $subTotal + $shippingFee;
-ob_end_flush();
 ?>
 <!-- Cart Start -->
 <div class="container-fluid">
     <div class="row px-xl-5">
-        <div class="col-lg-8 table-responsive mb-5">
+        <div class="col-lg-12 table-responsive mb-5">
             <table class="table table-light table-borderless table-hover text-center mb-0">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Sản phẩm</th>
+                        <th>STT</th>
+                        <th>Tên Sản Phẩm</th>
                         <th>Giá</th>
-                        <th>Số lượng</th>
-                        <th>Tổng giá</th>
-                        <th>Xóa </th>
+                        <th>Ảnh sản phẩm</th>
+                        <th>Số Lượng</th>
+                        <th>Tổng Giá Thành</th>
+                        <th>Xoá Sản Phẩm</th>
                     </tr>
                 </thead>
                 <tbody class="align-middle">
-                    <?php foreach($cart as $id => $item ):?>
-                    <tr>
-                        <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"><?php echo $item['name']?>
-                        </td>
-                        <td class="align-middle"><?php echo formatCurrencyVND($item['price'])?></td>
-                        <td class="align-middle">
-                            <form method="post">
-                                <input type="hidden" name="update_item" value="<?php echo $id ?>">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" type="submit" name="decrease_quantity">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" name="quantity" value="<?php echo $item['qty'] ?>">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus" type="submit" name="increase_quantity">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </td>
-                        <td class="align-middle"><?php echo formatCurrencyVND($item['total'])?></td>
-                        <td class="align-middle">
-                            <form method="post">
-                                <input type="hidden" name="remove_item" value="<?php echo $id ?>">
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to remove this item?')">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    <?php endforeach?>
-                    
+                    <?php
+                        showCartItem();
+                    ?>
                 </tbody>
             </table>
-        </div>
-        <div class="col-lg-4">
-            <form class="mb-30" action="">
-                <div class="input-group">
-                    <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary">Apply Coupon</button>
-                    </div>
-                </div>
-            </form>
-            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart
-                    Summary</span></h5>
-            <div class="bg-light p-30 mb-5">
-            <div class="border-bottom pb-2">
-                <div class="d-flex justify-content-between mb-3">
-                    <h6>Subtotal</h6>
-                    <h5><?php echo formatCurrencyVND($total); ?></h5>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <h6 class="font-weight-medium">Shipping</h6>
-                    <h6 class="font-weight-medium"><?php echo formatCurrencyVND($shippingFee); ?></h6>
-                </div>
-            </div>
-                <div class="pt-2">
-                <div class="d-flex justify-content-between mt-2">
-                    <h5>Total</h5>
-                    <h5><?php echo formatCurrencyVND($total+$shippingFee); ?></h5>
-                </div>
-                <a href="checkout.php" class="btn btn-block btn-primary font-weight-bold my-3 py-3 ">Proceed To Checkout</a>
-             </div>
+            <a href="../users/index.php" class="btn btn-block btn-primary font-weight-bold my-3 py-3">Thanh Toán</a>
+            <div class="d-flex justify-content-center">
+            <a href="../users/index.php" class="btn btn-block btn-warning font-weight-bold my-3 py-3">Mua hàng tiếp</a>
+            <a href="../users/cart.php?delete_cart=1" class="btn btn-block btn-info font-weight-bold my-3 py-3">Làm mới giỏ hàng</a>
             </div>
         </div>
+
     </div>
 </div>
 <!-- Cart End -->
