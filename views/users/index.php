@@ -165,16 +165,18 @@ include_once "../users/includes/header.php";
                         </div>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <p><?= $item['Views'] ?> views</p>
-                            <!-- <h6 class="text-muted ml-2"><del>$123.00</del></h6> -->
+                            <form action="../../views/users/cart.php" method="post">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <input type="number" name="qty" value="1" min="1" max="99">
+                                    <input type="submit" name="addToCart" value="Thêm vào giỏ hàng"
+                                        class="btn btn-primary px-3">
+                                    <input type="hidden" name="name" value="<?= $item['name'] ?>">
+                                    <input type="hidden" name="price" value="<?= $item['price'] ?>">
+                                    <input type="hidden" name="img" value="<?= $item['img'] ?>">
+                                </div>
+                            </form>
                         </div>
-                        <!-- <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="far fa-star text-primary mr-1"></small>
-                            <small class="far fa-star text-primary mr-1"></small>
-                            <small>(99)</small>
-                        </div> -->
+
                     </div>
 
                 </div>

@@ -1,6 +1,97 @@
 <?php
-  session_start();
- include_once "../../models/ProductAll_model.php";
+session_start();
+include_once "../../models/ProductAll_model.php";
+
+if (!isset($_SESSION['cart']))
+    $_SESSION['cart'] = [];
+
+if (isset($_GET['delete_cart']) && ($_GET['delete_cart'] == 1)) {
+    unset($_SESSION['cart']);
+    header('Location: http://localhost:8888/keitaizoneTemplate/views/users/index.php');
+}
+
+if (isset($_POST['addToCart']) && ($_POST['addToCart'])) {
+    $nameCart = $_POST['name'];
+    $priceCart = $_POST['price'];
+    $imgCart = $_POST['img'];
+    $qtyCart = $_POST['qty'];
+
+    $check = 0;
+
+    for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
+        if ($_SESSION['cart'][$i][0] === $nameCart) {
+            $check == 1;
+            $count = $qty + $_SESSION['cart'][$i][3];
+            $_SESSION['cart'][$i][3] = $count;
+            break;
+        }
+    }
+
+    if ($check === 0) {
+        $cartArray = [
+            $nameCart,
+            $priceCart,
+            $imgCart,
+            $qtyCart
+        ];
+
+        $_SESSION['cart'][] = $cartArray;
+    }
+
+    $temp = 0;
+
+    for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
+        $temp += $_SESSION['cart'][$i][3];
+    }
+
+
+    // Hàm để show các sản phẩm thêm vào giỏ hàng
+    function showCartItem()
+    {
+        if (isset($_SESSION['cart']) && (is_array($_SESSION['cart']))) {
+            $totalBill = 0;
+            for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
+                $total = $_SESSION['cart'][$i][1] * $_SESSION['cart'][$i][3];
+                $totalBill += $total;
+                echo '
+        <tr>
+            <td class="align-middle">' . ($i + 1) . '</td>
+            <td class="align-middle">' . $_SESSION['cart'][$i][0] . '</td>
+            <td class="align-middle">' . formatCurrencyVND($_SESSION['cart'][$i][1]) . '</td>
+            <td class="align-middle">
+                <img src="../../assets/users/img/products/' . $_SESSION['cart'][$i][2] . '" alt="" style="width: 50px; height: 50px">
+            </td>
+            <td class="align-middle">' . $_SESSION['cart'][$i][3] . '</td>
+            <td class="align-middle">' . formatCurrencyVND($total) . '</td>
+            <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
+        </tr>
+            ';
+            }
+            echo '
+            <tr>
+                <th colspan="5">Tổng đơn hàng: </th>
+                <th>
+                    <div>' . formatCurrencyVND($totalBill) . '</div>
+                </th>
+            </tr>
+        ';
+        }
+    }
+}
+
+// Hàm để lấy tổng giá trị đơn hàng để thanh toán
+
+function totalCheckout() {
+    $totalBill = 0;
+    if (isset($_SESSION['cart']) && (is_array($_SESSION['cart']))) {
+        for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
+            $total = $_SESSION['cart'][$i][1] * $_SESSION['cart'][$i][3];
+            $totalBill += $total;
+        }
+    }
+    return $totalBill;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -121,16 +212,16 @@
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse"
                     href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                 
+
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
                         <div class="nav-item dropdown dropright">
-                               
-                          
-                     
+
+
+
                 </nav>
             </div>
             <div class="col-lg-9">
@@ -151,8 +242,19 @@
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="cart.php" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">0</span>
+
+                                <?php
+                                if (isset($temp)) {
+                                    echo '
+                                        <span class="badge text-secondary border border-secondary rounded-circle"
+                                        style="padding-bottom: 2px;">
+                                        ' . $temp . '
+                                        </span>
+                                        ';
+                                }
+                                ?>
+
+
                             </a>
                         </div>
                     </div>

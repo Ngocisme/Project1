@@ -68,6 +68,16 @@ include_once "../users/includes/header.php";
                                     <h5><?=formatCurrencyVND($product['price']);?></h5>
                                 </div>
                             </div>
+                            <form action="../../views/users/cart.php" method="post">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <input type="number" name="qty" value="1" min="1" max="99">
+                                    <input type="submit" name="addToCart" value="Thêm vào giỏ hàng"
+                                        class="btn btn-primary px-3">
+                                    <input type="hidden" name="name" value="<?= $product['name'] ?>">
+                                    <input type="hidden" name="price" value="<?= $product['price'] ?>">
+                                    <input type="hidden" name="img" value="<?= $product['img'] ?>">
+                                </div>
+                            </form>
                         </div>
                     </div>
                    <?php } ?>
