@@ -5,6 +5,7 @@ if (!isset($_SESSION['user']['name'])) {
     header("Location: http://localhost:8888/keitaizoneTemplate/views/admin/login.php");
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +46,7 @@ if (!isset($_SESSION['user']['name'])) {
             /* Cắt và chỉnh kích thước hình ảnh để lấp đầy container */
         }
     </style>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body id="page-top">

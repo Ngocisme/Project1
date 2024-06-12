@@ -54,6 +54,34 @@
 <!-- Custom scripts for all pages-->
 <script src="../../assets/admin/js/sb-admin-2.min.js"></script>
 
+<script>
+        // Doanh thu theo ngày
+        const ctx = document.getElementById('dailyRevenueChart').getContext('2d');
+        const dailyRevenueChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: <?php echo json_encode($dailyRevenueDates); ?>,
+                datasets: [{
+                    label: 'Doanh thu ngày',
+                    data: <?php echo json_encode($dailyRevenueAmounts); ?>,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1
+                }]
+            },
+
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+       
+    </script>
 </body>
 
 </html>
