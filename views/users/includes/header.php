@@ -63,6 +63,9 @@ if (isset($_POST['addToCart']) && ($_POST['addToCart'])) {
             </td>
             <td class="align-middle">' . $_SESSION['cart'][$i][3] . '</td>
             <td class="align-middle">' . formatCurrencyVND($total) . '</td>
+                <td class="align-middle">
+                    <input type="number" name="qty" value="1" min="1" max="99">
+                </td>
             <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
         </tr>
             ';
@@ -75,13 +78,15 @@ if (isset($_POST['addToCart']) && ($_POST['addToCart'])) {
                 </th>
             </tr>
         ';
+
         }
     }
 }
 
 // Hàm để lấy tổng giá trị đơn hàng để thanh toán
 
-function totalCheckout() {
+function totalCheckout()
+{
     $totalBill = 0;
     if (isset($_SESSION['cart']) && (is_array($_SESSION['cart']))) {
         for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
@@ -137,13 +142,30 @@ function totalCheckout() {
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
-                            My Account
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="./../admin/login.php" class="dropdown-item">Login</a>
-                            <a href="./../admin/register.php" class="dropdown-item">Register</a>
-                        </div>
+
+                        <?php
+                        if (isset($_SESSION['user'])) {
+                            ?>
+                            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+                                <?= $_SESSION['user']['name'] ?>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="./../../models/Logout_button.php" class="dropdown-item">Logout</a>
+                            </div>
+                            <?php
+                        } else {
+                            ?>
+                            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+                                My Account
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="./../admin/login.php" class="dropdown-item">Login</a>
+                                <a href="./../admin/register.php" class="dropdown-item">Register</a>
+                            </div>
+                            <?php
+                        }
+                        ?>
+
                     </div>
                     <div class="btn-group mx-2">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle"

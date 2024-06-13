@@ -36,15 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
 
-    // $checkarray = [
-    //     $user_name,
-    //     $user_password,
-    //     $user_email,
-    //     $user_level
-    // ];
-
-    // check($checkarray);
-
     $sql = "INSERT INTO users (name, email, password, level, avatar) VALUES (:name, :email, :password, :level, :avatar)";
     $stmt = $conn->prepare($sql);
     $stmt->execute(

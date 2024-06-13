@@ -17,6 +17,7 @@ include_once "../../models/Database.php";
                         <th>Ảnh sản phẩm</th>
                         <th>Số Lượng</th>
                         <th>Tổng Giá Thành</th>
+                        <th>Tăng/Giảm SL</th>
                         <th>Xoá Sản Phẩm</th>
                     </tr>
                 </thead>

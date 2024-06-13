@@ -102,6 +102,7 @@ if (!isset($_SESSION['user']['name'])) {
                         <a class="collapse-item" href="./ProductCategory_Show.php">Product Categories</a>
                         <a class="collapse-item" href="./Product_Show.php">Products</a>
                         <a class="collapse-item" href="./User_Show.php">Users</a>
+                        <a class="collapse-item" href="./Order_Show.php">Orders</a>
                         <div class="collapse-divider"></div>
                     </div>
                 </div>
