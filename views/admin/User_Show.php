@@ -62,9 +62,9 @@ include_once "../../models/UserAll_model.php";
                                     <img src="../../assets/admin/img/users/<?=$user['avatar']?>" alt="">
                                 </td>
                                 <td>
-                                    <a href="./User_Edit.php?user_id=<?= $user['id'] ?>">Edit</a>
-                                    ||
-                                    <a href="./User_Delete.php?user_id=<?= $user['id'] ?>">Delete</a>
+                                    <a href="./User_Edit.php?user_id=<?= $user['id'] ?>" class="btn btn-primary">Edit</a>
+                                    
+                                    <a href="./User_Delete.php?user_id=<?= $user['id'] ?>" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             <?php

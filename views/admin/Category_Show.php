@@ -51,9 +51,9 @@ include_once "../../models/CategoryAll_model.php";
                                 <td><?=$product['id'] ?></td>
                                 <td><?=$product['name'] ?></td>
                                 <td>
-                                    <a href="./Category_Edit.php?category_id=<?=$product['id']?>">Edit</a>
-                                    ||
-                                    <a href="./Category_Delete.php?category_id=<?=$product['id']?>">Delete</a>
+                                    <a href="./Category_Edit.php?category_id=<?=$product['id']?>" class="btn btn-primary">Edit</a>
+                                    
+                                    <a href="./Category_Delete.php?category_id=<?=$product['id']?>" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             <?php

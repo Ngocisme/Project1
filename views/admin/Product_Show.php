@@ -77,9 +77,9 @@ include_once "../../models/ProductAll_model.php";
                                     <img src="../../assets//users/img/products/<?= $product['img'] ?>" alt="" srcset="">
                                 </td>
                                 <td>
-                                    <a href="./Product_Edit.php?product_id=<?= $product['id'] ?>">Edit</a>
-                                    ||
-                                    <a href="./Product_Delete.php?product_id=<?= $product['id'] ?>">Delete</a>
+                                    <a href="./Product_Edit.php?product_id=<?= $product['id'] ?>" class="btn btn-primary">Edit</a>
+                                    
+                                    <a href="./Product_Delete.php?product_id=<?= $product['id'] ?>" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             <?php
